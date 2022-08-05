@@ -1,9 +1,23 @@
-<h1>{{ question.question_text }}</h1>
-<ul>
-    {% for choice in question.choice_set.all %}
-    <li>
-        {{ choice.choice_text}} -- {{ choice.votes }} vote{{ choice.votes|pluralize}}
-    </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'polls:detail' question.id %}">Te gustaría votar de nievo?</a>
+{% extends 'polls/main_layout.html' %} 
+{% block title %}{{ question.question_text }}{%endblock title %} 
+
+{% block content %}
+<div class="grid items-center text-center gap-y-10">
+
+<div class="grid grid-cols-2 gap-x-1 gap-y-5">
+
+{% for choice in question.choice_set_sorted %}
+    <div class="text-right">{{ choice.choice_text}}</div>
+    <div>
+        <progress class="progress progress-primary w-56" value="{{ choice.votes }}" max="{{ question.max_voted.votes}}"></progress>
+        {{ choice.votes }} vote{{ choice.votes|pluralize}}
+    </div>
+{% endfor %}   
+</div>
+
+<section>
+    <a class="link link-secondary text-lg font-semibold" href="{% url 'polls:detail' question.id %}">Te gustaría votar de nievo?</a>
+</section>
+</div>
+
+{% endblock content %}

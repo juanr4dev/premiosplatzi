@@ -16,7 +16,14 @@ class Question(models.Model):
 
     def was_published_recently(self):
         return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
+    
+    def choice_set_sorted(self):
+        # Can set .order_by('-votes') to reverse order
+        return self.choice_set.all().order_by('-votes')
+    
+    def max_voted(self):
+        # return the first more voted
+        return self.choice_set_sorted().first()
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
