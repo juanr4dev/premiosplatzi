@@ -2,13 +2,13 @@
 {% block title %}{{ question.question_text }}{%endblock title %} 
 
 {% block content %}
-<div class="grid items-center text-center gap-y-10">
+<div class="grid gap-y-10 justify-items-center">
 
-<div class="grid grid-cols-2 gap-x-1 gap-y-5">
+<div class="grid grid-cols-3 gap-5 justify-center">
 
 {% for choice in question.choice_set_sorted %}
     <div class="text-right">{{ choice.choice_text}}</div>
-    <div>
+    <div class="col-span-2">
         <progress class="progress progress-primary w-56" value="{{ choice.votes }}" max="{{ question.max_voted.votes}}"></progress>
         {{ choice.votes }} vote{{ choice.votes|pluralize}}
     </div>
@@ -16,7 +16,10 @@
 </div>
 
 <section>
-    <a class="link link-secondary text-lg font-semibold" href="{% url 'polls:detail' question.id %}">Te gustaría votar de nievo?</a>
+    <span class="text-lg font-semibold">Te gustaría votar de nievo?</span>
+    <button class="btn btn-link text-secondary" onclick="location.href='{% url 'polls:detail' question.id %}'">SI</button>
+    <button class="btn btn-link text-accent" onclick="location.href='{% url 'polls:index' %}'">NO</button>
+
 </section>
 </div>
 
