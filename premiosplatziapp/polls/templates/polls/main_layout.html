@@ -10,12 +10,15 @@
 		{% tailwind_css %}
 	</head>
 
-	<body class="bg-gray-50 dark:bg-slate-800 font-serif leading-normal tracking-normal">
-		<div class="container mx-auto">
-			<section class="flex items-center justify-center h-screen dark:text-white">
+	<body class="bg-gray-50 dark:bg-slate-800 font-sans leading-normal tracking-normal">
+        <div class="navbar">
+            <input type="checkbox" class="toggle toggle-xs object-right" checked />
+        </div>
+        <div class="container mx-auto h-screen">
+			<section class="flex items-center justify-center dark:text-white m-10">
 				<h1 class="text-5xl">{% block title %} {% endblock %}</h1>
 			</section>
-            <section>
+            <section class="flex items-center justify-center">
                 {% block content %}
                 {% endblock %}
             </section>
