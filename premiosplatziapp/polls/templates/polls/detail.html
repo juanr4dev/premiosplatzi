@@ -6,7 +6,7 @@
 <div class="grid">
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
-    <div class="card w-96 bg-neutral text-secondary-content mb-5 form-control">
+    <div class="card w-96 bg-white dark:bg-neutral dark:text-secondary-content border-neutral border mb-5 form-control">
         <div class="card-body items-start ">
             {% for choice in question.choice_set.all %}
                 <label class="label">

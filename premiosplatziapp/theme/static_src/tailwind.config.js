@@ -59,4 +59,5 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
         require("daisyui")
     ],
+    darkMode: 'class'
 }
